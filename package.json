@@ -1,0 +1,18 @@
+{
+  "name": "partneriq-sdks",
+  "private": true,
+  "version": "0.0.0",
+  "description": "PartnerIQ SDK packages (@partneriq-io/node, @partneriq-io/browser, @partneriq-io/shared-types).",
+  "workspaces": [
+    "partneriq-node",
+    "partneriq-browser",
+    "shared-types"
+  ],
+  "scripts": {
+    "build:node": "npm run build --workspace=partneriq-node",
+    "build:browser": "npm run build --workspace=partneriq-browser",
+    "build:shared-types": "npm run build --workspace=shared-types",
+    "build:sdks": "npm run build:shared-types && npm run build:node && npm run build:browser",
+    "test:sdk": "npm run typecheck --workspaces --if-present"
+  }
+}
