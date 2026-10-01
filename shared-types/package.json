@@ -1,11 +1,23 @@
 {
   "name": "@partneriq-io/shared-types",
-  "version": "0.1.0",
-  "description": "Shared TypeScript types for PartnerIQ SDKs.",
+  "version": "1.1.0",
+  "description": "TypeScript request, response and webhook event types for the PartnerIQ API (generated from @partneriq-io/node).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venkat1705/partneriq-sdk.git",
+    "directory": "shared-types"
+  },
+  "bugs": {
+    "url": "https://github.com/venkat1705/partneriq-sdk/issues"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "lint": "tsc --noEmit -p tsconfig.json",
@@ -14,10 +26,12 @@
     "prepublishOnly": "npm run build && npm pack --dry-run"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "license": "MIT",
   "devDependencies": {
     "typescript": "~5.8.2"
-  }
+  },
+  "homepage": "https://docs.partneriq.in/docs/sdk/node/types"
 }
