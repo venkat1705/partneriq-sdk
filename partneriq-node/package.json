@@ -50,9 +50,9 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "esbuild": "^0.25.0",
-    "typescript": "~5.8.2"
+    "@types/node": "^26.6.3",
+    "esbuild": "^0.28.2",
+    "typescript": "~7.0.2"
   },
   "sideEffects": false,
   "homepage": "https://docs.partneriq.in/docs/sdk/node"
