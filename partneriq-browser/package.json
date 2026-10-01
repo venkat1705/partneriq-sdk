@@ -1,27 +1,41 @@
 {
   "name": "@partneriq-io/browser",
-  "version": "1.0.1",
-  "description": "Official Browser & Client-side Attribution SDK for PartnerIQ",
+  "version": "1.1.0",
+  "description": "Official browser SDK for PartnerIQ: first-party referral capture and customer identification.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venkat1705/partneriq-sdk.git",
+    "directory": "partneriq-browser"
+  },
+  "bugs": {
+    "url": "https://github.com/venkat1705/partneriq-sdk/issues"
+  },
   "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
-  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=browser --outfile=dist/index.js --format=esm --sourcemap && esbuild src/index.ts --bundle --platform=browser --outfile=dist/index.cjs --format=cjs --sourcemap && tsc -p tsconfig.json",
+    "build": "esbuild src/index.ts --bundle --platform=browser --target=es2019 --outfile=dist/index.mjs --format=esm --sourcemap && esbuild src/index.ts --bundle --platform=browser --target=es2019 --outfile=dist/index.cjs --format=cjs --sourcemap && esbuild src/index.ts --bundle --platform=browser --target=es2019 --format=iife --global-name=PartnerIQBrowser --minify --outfile=dist/partneriq.min.js && tsc -p tsconfig.json --emitDeclarationOnly",
     "lint": "tsc --noEmit -p tsconfig.json",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "npm run typecheck",
+    "test": "npm run typecheck && npm run build && node --test test/browser.test.mjs",
     "prepublishOnly": "npm run build && npm pack --dry-run"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "partneriq",
@@ -35,5 +49,9 @@
   "devDependencies": {
     "esbuild": "^0.25.0",
     "typescript": "~5.8.2"
-  }
+  },
+  "sideEffects": false,
+  "unpkg": "dist/partneriq.min.js",
+  "jsdelivr": "dist/partneriq.min.js",
+  "homepage": "https://docs.partneriq.in/docs/sdk/browser"
 }

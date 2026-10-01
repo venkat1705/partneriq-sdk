@@ -1,30 +1,44 @@
 {
   "name": "@partneriq-io/node",
-  "version": "1.0.1",
-  "description": "Official Node.js SDK for PartnerIQ B2B SaaS Partner & Affiliate Engine",
+  "version": "1.1.0",
+  "description": "Official Node.js SDK for PartnerIQ: conversions, refunds, attribution, tracking links and signed webhooks.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venkat1705/partneriq-sdk.git",
+    "directory": "partneriq-node"
+  },
+  "bugs": {
+    "url": "https://github.com/venkat1705/partneriq-sdk/issues"
+  },
   "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
-  "files": ["dist", "README.md", "CHANGELOG.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --platform=node --external:node:crypto --outfile=dist/index.js --format=esm --sourcemap && esbuild src/index.ts --bundle --platform=node --external:node:crypto --outfile=dist/index.cjs --format=cjs --sourcemap && tsc -p tsconfig.json",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --external:node:crypto --outfile=dist/index.mjs --format=esm --sourcemap && esbuild src/index.ts --bundle --platform=node --target=node18 --external:node:crypto --outfile=dist/index.cjs --format=cjs --sourcemap && tsc -p tsconfig.json --emitDeclarationOnly",
     "lint": "tsc --noEmit -p tsconfig.json",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "npm run typecheck",
+    "test": "npm run typecheck && npm run build && node --test test/client.test.mjs",
     "prepublishOnly": "npm run build && npm pack --dry-run"
   },
   "engines": {
     "node": ">=18"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "keywords": [
     "partneriq",
@@ -39,5 +53,7 @@
     "@types/node": "^22.14.0",
     "esbuild": "^0.25.0",
     "typescript": "~5.8.2"
-  }
+  },
+  "sideEffects": false,
+  "homepage": "https://docs.partneriq.in/docs/sdk/node"
 }
