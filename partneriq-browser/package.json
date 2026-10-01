@@ -47,8 +47,8 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "esbuild": "^0.25.0",
-    "typescript": "~5.8.2"
+    "esbuild": "^0.28.2",
+    "typescript": "~7.0.2"
   },
   "sideEffects": false,
   "unpkg": "dist/partneriq.min.js",
